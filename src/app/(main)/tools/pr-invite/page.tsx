@@ -37,10 +37,6 @@ const STATUS_COLORS: Record<string, string> = {
 
 const STATUSES = Object.keys(STATUS_COLORS)
 
-const publicFormUrl = typeof window !== 'undefined'
-  ? `${window.location.origin}/forms/pr-invite`
-  : '/forms/pr-invite'
-
 export default function PrInvitePage() {
   const [data,        setData]        = useState<PrInvite[]>([])
   const [loading,     setLoading]     = useState(true)
@@ -48,6 +44,11 @@ export default function PrInvitePage() {
   const [lastSynced,  setLastSynced]  = useState<string | null>(null)
   const [selected,    setSelected]    = useState<PrInvite[]>([])
   const [statusFilter, setStatusFilter] = useState('')
+  const [publicFormUrl, setPublicFormUrl] = useState('/forms/pr-invite')
+
+  useEffect(() => {
+    setPublicFormUrl(`${window.location.origin}/forms/pr-invite`)
+  }, [])
 
   const fetchData = useCallback(async () => {
     try {

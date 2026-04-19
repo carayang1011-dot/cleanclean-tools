@@ -48,7 +48,7 @@ export default function LoginPage() {
             <Leaf className="h-8 w-8 text-white" />
           </div>
           <h1 className="text-2xl font-bold text-brand-800">淨淨 Clean Clean</h1>
-          <p className="text-sm text-muted-foreground">設計需求管理系統</p>
+          <p className="text-sm text-muted-foreground">行銷營運中心</p>
         </div>
 
         <Card className="shadow-lg border-0 bg-white/80 backdrop-blur">

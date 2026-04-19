@@ -6,3 +6,9 @@ node_modules/
 *.pem
 npm-debug.log*
 .vercel
+tmp/
+*.json.backup
+dev.log
+dev-*.log
+dev-*.txt
+cleanclean-tools-*.json
