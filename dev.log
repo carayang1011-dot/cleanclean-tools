@@ -1,0 +1,591 @@
+
+> design-request-system@0.1.0 dev
+> next dev -p 3030
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3030
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 8.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 21.1s (463 modules)
+ ✓ Compiled in 1435ms (235 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ○ Compiling /tools/design-requests ...
+ ✓ Compiled /tools/design-requests in 47.9s (3940 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ GET /tools/design-requests 200 in 2902ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ○ Compiling /requests/new ...
+ ✓ Compiled /requests/new in 3.8s (3984 modules)
+ ○ Compiling /tools/cooperations ...
+ ✓ Compiled /tools/cooperations in 1992ms (4007 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled in 13.7s (1097 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ GET /tools/design-requests 200 in 2319ms
+ ○ Compiling /requests/[id] ...
+ ✓ Compiled /requests/[id] in 33.6s (4051 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled in 11s (4051 modules)
+ ✓ Compiled in 1217ms (1110 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ○ Compiling /tools/payment ...
+ ✓ Compiled /tools/payment in 15.9s (4085 modules)
+ ○ Compiling /api/remittances ...
+ GET /tools/design-requests 200 in 16726ms
+ ✓ Compiled /api/remittances in 4.3s (2988 modules)
+ GET /api/remittances?month=&paid= 200 in 692ms
+ GET /api/remittances? 200 in 723ms
+ GET /api/remittances? 200 in 309ms
+ GET /api/remittances?month=&paid= 200 in 367ms
+ ✓ Compiled in 1894ms (2988 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 2.9s (4114 modules)
+ GET /tools/payment 200 in 2185ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /api/remittances? 200 in 762ms
+ GET /api/remittances?month=&paid= 200 in 829ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 103.6s (5179 modules)
+ GET /api/remittances? 200 in 122628ms
+ GET /api/remittances?month=&paid= 200 in 122645ms
+ GET /tools/payment 200 in 123625ms
+ GET /api/remittances? 200 in 610ms
+ GET /api/remittances?month=&paid= 200 in 731ms
+ GET /api/remittances? 200 in 413ms
+ GET /api/remittances?month=&paid= 200 in 444ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 12.9s (5179 modules)
+ GET /tools/payment 200 in 11049ms
+ ✓ Compiled in 13.2s (5179 modules)
+ GET /api/remittances?month=all&paid=all 200 in 6863ms
+ GET /api/remittances?month=&paid= 200 in 6990ms
+ GET /api/remittances?month=all&paid=all 200 in 353ms
+ GET /api/remittances?month=&paid= 200 in 526ms
+ GET /tools/payment 200 in 605ms
+ GET /api/remittances? 200 in 1017ms
+ GET /api/remittances?month=&paid= 200 in 1102ms
+ GET /api/remittances? 200 in 550ms
+ GET /api/remittances?month=&paid= 200 in 554ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ GET /api/remittances?month=115.04 200 in 560ms
+ GET /api/remittances?month=115.03 200 in 276ms
+ GET /api/remittances?month=115.02 200 in 320ms
+ GET /api/remittances?month=115.04 200 in 303ms
+ GET /api/remittances?month=115.01 200 in 1477ms
+ GET /api/remittances?month=115.04 200 in 359ms
+ GET /api/remittances?month=831%E4%B9%8B%E5%89%8D 200 in 367ms
+ GET /api/remittances?month=112.05 200 in 307ms
+ GET /api/remittances? 200 in 639ms
+ GET /api/remittances?month=115.04 200 in 323ms
+ GET /api/remittances? 200 in 651ms
+ GET /api/remittances?month=831%E4%B9%8B%E5%89%8D 200 in 318ms
+ GET /api/remittances? 200 in 482ms
+ GET /api/remittances?month=831%E4%B9%8B%E5%89%8D 200 in 2948ms
+ ○ Compiling /tools/utm ...
+ ✓ Compiled /tools/utm in 25.1s (4091 modules)
+ ○ Compiling /api/sheets/utm ...
+ ✓ Compiled /api/sheets/utm in 7.4s (4065 modules)
+ GET /api/sheets/utm 200 in 1815ms
+ GET /api/sheets/utm 200 in 33958ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 35.5s (3513 modules)
+ GET /tools/utm 200 in 11450ms
+ ○ Compiling /api/sheets/utm ...
+ ✓ Compiled /api/sheets/utm in 10.2s (3470 modules)
+ GET /api/sheets/utm 200 in 2616ms
+ GET /api/sheets/utm 200 in 58992ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled in 13.6s (4594 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled in 57.2s (3513 modules)
+ ✓ Compiled in 2.4s (3513 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ GET /tools/utm 200 in 2753ms
+ ○ Compiling /api/sheets/utm ...
+ ✓ Compiled /api/sheets/utm in 14.7s (3470 modules)
+ ○ Compiling /tools/pr-invite ...
+ GET /api/sheets/utm 200 in 52374ms
+ GET /api/sheets/utm 200 in 2426ms
+ ✓ Compiled /tools/pr-invite in 16.9s (4596 modules)
+ GET /tools/pr-invite 200 in 19404ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled in 9.3s (3507 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /tools/pr-invite 200 in 9336ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 107.4s (3507 modules)
+ GET /tools/pr-invite 200 in 27567ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 70.4s (3509 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /tools/pr-invite 200 in 38182ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 52.3s (3509 modules)
+ GET /tools/pr-invite 200 in 15437ms
+ ○ Compiling /tools/pr-list ...
+ ✓ Compiled /tools/pr-list in 1757ms (3509 modules)
+ ○ Compiling /api/sheets/pr-list ...
+ ✓ Compiled /api/sheets/pr-list in 35.3s (3474 modules)
+ ○ Compiling /tools/shipping ...
+ GET /api/sheets/pr-list 200 in 64336ms
+ GET /api/sheets/pr-list 200 in 44453ms
+ GET /api/sheets/pr-list 200 in 31139ms
+ GET /api/sheets/pr-list 200 in 32489ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ✓ Compiled /tools/shipping in 57.5s (4610 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ○ Compiling /tools/pr-list ...
+ ✓ Compiled /tools/pr-list in 12.1s (2378 modules)
+ ○ Compiling /api/sheets/pr-list ...
+ ✓ Compiled /tools/shipping in 6.9s (3474 modules)
+ ✓ Compiled (3480 modules)
+ GET /api/sheets/pr-list 200 in 2278ms
+ GET /api/sheets/pr-list 200 in 50065ms
+ ○ Compiling /api/sheets/shipping ...
+ ✓ Compiled /api/sheets/shipping in 3.1s (3482 modules)
+ GET /api/sheets/shipping 200 in 4166ms
+ GET /api/sheets/shipping 200 in 472ms
+ GET /api/sheets/pr-list 200 in 910ms
+ GET /api/sheets/pr-list 200 in 509ms
+ GET /api/sheets/pr-list 200 in 534ms
+ GET /api/sheets/pr-list 200 in 462ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 29.6s (2317 modules)
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ ⨯ unhandledRejection: Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ ⨯ unhandledRejection: Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ ⨯ unhandledRejection: Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ ⨯ unhandledRejection: Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ GET /tools/cooperations 200 in 11977ms
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+ ⨯ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at Array.map (<anonymous>)
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⨯ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at Array.map (<anonymous>)
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Unable to snapshot resolve dependencies
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+Error: EPERM: operation not permitted, scandir 'D:\claude_司\設計需求系統\src\app\(main)\tools\pr-list'
+    at async Object.readdir (node:internal/fs/promises:956:18)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 18)
+    at async recursiveReadDir (D:\claude_司\設計需求系統\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\claude_司\設計需求系統\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'scandir',
+  path: 'D:\\claude_司\\設計需求系統\\src\\app\\(main)\\tools\\pr-list'
+}
+[?25h

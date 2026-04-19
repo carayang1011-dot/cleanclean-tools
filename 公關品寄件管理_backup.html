@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公關品寄件管理系統</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --p:#5B4FCF;--pd:#4338CA;--pl:#EEEEFF;
+  --bg:#F7F8FC;--card:#FFF;--bd:#E5E7EB;
+  --tx:#1F2937;--mu:#6B7280;--fa:#9CA3AF;
+  --or:#D97706;--re:#DC2626;--gr:#059669;--bl:#2563EB;
+  --sh:0 1px 3px rgba(0,0,0,.08);--shl:0 8px 24px rgba(0,0,0,.13);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;font-size:14px;}
+.header{background:var(--p);color:#fff;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 10px rgba(80,60,200,.25);}
+.header h1{font-size:16px;font-weight:700;}
+.header-sub{font-size:11px;opacity:.7;margin-top:2px;}
+.btn-add{background:#fff;color:var(--p);border:none;border-radius:7px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.btn-add:hover{background:#EEF;}
+
+/* TOOLBAR */
+.toolbar{padding:12px 22px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--bd);position:sticky;top:48px;z-index:100;}
+.sbox{position:relative;flex:1;min-width:160px;}
+.sbox input{width:100%;padding:7px 11px 7px 32px;border:1.5px solid var(--bd);border-radius:7px;font-size:13px;outline:none;transition:.15s;background:var(--bg);}
+.sbox input:focus{border-color:var(--p);background:#fff;}
+.sbox .si{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--fa);}
+
+/* DROPDOWN (reusable) */
+.dd-wrap{position:relative;}
+.dd-trigger{display:flex;align-items:center;gap:5px;padding:7px 28px 7px 11px;border:1.5px solid var(--bd);border-radius:7px;background:#fff;cursor:pointer;font-size:13px;white-space:nowrap;user-select:none;transition:.15s;min-width:110px;}
+.dd-trigger:hover,.dd-trigger.open{border-color:var(--p);}
+.dd-trigger::after{content:'▾';position:absolute;right:9px;color:var(--fa);font-size:10px;}
+.dd-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:100%;background:#fff;border:1.5px solid var(--p);border-radius:8px;box-shadow:var(--shl);z-index:400;overflow:hidden;}
+.dd-menu.open{display:block;}
+.dd-search{padding:7px 9px;border-bottom:1px solid var(--bd);}
+.dd-search input{width:100%;border:1.5px solid var(--bd);border-radius:6px;padding:5px 9px;font-size:13px;outline:none;}
+.dd-search input:focus{border-color:var(--p);}
+.dd-opts{max-height:240px;overflow-y:auto;}
+.dd-opt{padding:7px 13px;cursor:pointer;font-size:13px;transition:.1s;}
+.dd-opt:hover{background:var(--pl);}
+.dd-opt.sel{background:var(--pl);color:var(--p);font-weight:600;}
+.dd-opt.hide{display:none;}
+
+.cnt{background:var(--pl);color:var(--p);border-radius:20px;padding:3px 11px;font-size:12px;font-weight:700;white-space:nowrap;}
+
+/* TABLE */
+.tw{padding:18px 22px;}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--sh);}
+thead tr{background:var(--p);color:#fff;}
+thead th{padding:10px 13px;text-align:left;font-size:12px;font-weight:600;white-space:nowrap;}
+tbody tr.main-row{border-bottom:1px solid var(--bd);cursor:pointer;transition:.1s;}
+tbody tr.main-row:hover{background:#FAFAFA;}
+tbody tr.main-row.exp{background:var(--pl);}
+td{padding:9px 13px;vertical-align:middle;}
+.td-date{white-space:nowrap;color:var(--mu);font-size:12px;}
+.td-camp{font-weight:700;color:var(--p);}
+.td-ord{font-family:monospace;font-size:12px;color:var(--mu);}
+.td-name{font-weight:600;}
+.td-ph{color:var(--mu);font-size:13px;white-space:nowrap;}
+.td-addr{color:var(--mu);max-width:180px;font-size:13px;}
+.td-prod{max-width:200px;}
+.pp{display:inline-block;background:#F3F4F6;border-radius:4px;padding:1px 6px;font-size:11px;margin:1px;vertical-align:middle;}
+.pp .sku{color:var(--fa);font-size:10px;font-family:monospace;display:block;}
+.ntdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--or);margin-left:3px;vertical-align:middle;}
+.td-act{white-space:nowrap;text-align:right;}
+.bx{padding:4px 9px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;border:none;transition:.1s;}
+.bx-e{background:#EFF6FF;color:var(--bl);}.bx-e:hover{background:#DBEAFE;}
+.bx-d{background:#FEF2F2;color:var(--re);}.bx-d:hover{background:#FEE2E2;}
+.bx-c{background:#F0FDF4;color:var(--gr);}.bx-c:hover{background:#DCFCE7;}
+
+/* EXPAND ROW */
+.exp-row{display:none;}
+.exp-row.open{display:table-row;}
+.exp-cell{padding:0!important;}
+.exp-in{padding:14px 18px 14px 36px;background:#FAFBFF;border-top:1px dashed var(--bd);}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;}
+.elabel{font-size:11px;font-weight:700;color:var(--fa);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;}
+.eval{font-size:13px;}
+.ptable{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px;}
+.ptable th{text-align:left;font-size:11px;font-weight:700;color:var(--fa);text-transform:uppercase;padding:4px 8px;border-bottom:1px solid var(--bd);}
+.ptable td{padding:5px 8px;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
+.ptable tr:last-child td{border:none;}
+.sku-code{font-family:monospace;font-size:11px;color:var(--mu);background:#F3F4F6;padding:1px 5px;border-radius:3px;}
+.nbox{background:#FFFBEB;border-left:3px solid var(--or);padding:7px 11px;border-radius:0 6px 6px 0;font-size:13px;color:var(--or);margin-top:10px;}
+.erow-empty td{text-align:center;padding:48px;color:var(--fa);}
+
+/* MODAL */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px;}
+.modal{background:#fff;border-radius:14px;width:100%;max-width:620px;max-height:92vh;overflow-y:auto;box-shadow:var(--shl);}
+.mhead{padding:16px 20px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;}
+.mhead h2{font-size:15px;font-weight:700;}
+.mclose{background:none;border:none;font-size:22px;cursor:pointer;color:var(--fa);line-height:1;}
+.mbody{padding:18px 20px;}
+.fg{margin-bottom:13px;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+label{display:block;font-size:11px;font-weight:700;color:var(--mu);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px;}
+input[type=text],input[type=date]{width:100%;padding:7px 10px;border:1.5px solid var(--bd);border-radius:7px;font-size:13px;outline:none;font-family:inherit;transition:.15s;}
+input:focus{border-color:var(--p);}
+.mfoot{padding:13px 20px;border-top:1px solid var(--bd);display:flex;gap:9px;justify-content:flex-end;}
+.btn-ok{background:var(--p);color:#fff;border:none;border-radius:7px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-ok:hover{background:var(--pd);}
+.btn-cc{background:var(--bg);color:var(--mu);border:1.5px solid var(--bd);border-radius:7px;padding:8px 14px;font-size:13px;cursor:pointer;}
+
+/* PRODUCT TABLE IN MODAL */
+.prod-editor{border:1.5px solid var(--bd);border-radius:8px;overflow:hidden;}
+.pe-head{display:grid;grid-template-columns:1fr 120px 60px 32px;gap:0;background:#F9FAFB;font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;padding:6px 10px;border-bottom:1px solid var(--bd);}
+.pe-row{display:grid;grid-template-columns:1fr 120px 60px 32px;gap:4px;padding:5px 8px;border-bottom:1px solid #F3F4F6;align-items:center;}
+.pe-row:last-of-type{border:none;}
+.pe-row input{padding:5px 8px;border:1.5px solid var(--bd);border-radius:5px;font-size:13px;outline:none;font-family:inherit;width:100%;}
+.pe-row input:focus{border-color:var(--p);}
+.pe-row input[type=number]{width:100%;text-align:center;}
+.btn-rm{background:#FEF2F2;color:var(--re);border:none;border-radius:5px;width:26px;height:26px;cursor:pointer;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.btn-addprod{margin:8px;padding:6px 12px;background:var(--pl);color:var(--p);border:1.5px dashed var(--p);border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;width:calc(100% - 16px);}
+.hl{background:#FEF08A;border-radius:2px;}
+@media(max-width:700px){.tw{padding:10px;}.exp-grid{grid-template-columns:1fr;}.fr{grid-template-columns:1fr;}.pe-head,.pe-row{grid-template-columns:1fr 100px 50px 32px;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div><h1>📦 公關品寄件管理</h1><div class="header-sub">創作者 &amp; 合作寄件紀錄</div></div>
+  <button class="btn-add" onclick="openAdd()">＋ 新增寄件</button>
+</div>
+
+<div class="toolbar">
+  <!-- 搜尋 -->
+  <div class="sbox">
+    <span class="si">🔍</span>
+    <input type="text" id="srch" placeholder="搜尋收件人、訂單號、SKU、地址…" oninput="go()">
+  </div>
+  <!-- 月份 -->
+  <div class="dd-wrap" id="ddMonth">
+    <div class="dd-trigger" id="ddMonthTrig" onclick="ddToggle('ddMonth')">
+      <span id="ddMonthLabel">全部月份</span>
+    </div>
+    <div class="dd-menu" id="ddMonthMenu">
+      <div class="dd-opts" id="ddMonthOpts"></div>
+    </div>
+  </div>
+  <!-- 活動 -->
+  <div class="dd-wrap" id="ddCamp">
+    <div class="dd-trigger" id="ddCampTrig" onclick="ddToggle('ddCamp')">
+      <span id="ddCampLabel">全部活動</span>
+    </div>
+    <div class="dd-menu" id="ddCampMenu">
+      <div class="dd-search"><input type="text" id="ddCampSrch" placeholder="搜尋活動名稱…" oninput="buildCampOpts(this.value)" onclick="event.stopPropagation()"></div>
+      <div class="dd-opts" id="ddCampOpts"></div>
+    </div>
+  </div>
+  <span class="cnt" id="cnt">0 筆</span>
+</div>
+
+<div class="tw">
+  <table>
+    <thead><tr>
+      <th>日期</th><th>活動 / 創作者</th><th>訂單編號</th>
+      <th>收件人</th><th>電話</th><th>收件地址</th><th>產品摘要</th><th></th>
+    </tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+</div>
+
+<!-- MODAL -->
+<div class="ov" id="modal" style="display:none" onclick="if(event.target===this)closeM()">
+  <div class="modal">
+    <div class="mhead"><h2 id="mtitle">新增寄件紀錄</h2><button class="mclose" onclick="closeM()">×</button></div>
+    <div class="mbody">
+      <div class="fr">
+        <div class="fg"><label>活動名稱 / 創作者 *</label><input type="text" id="f_camp" placeholder="例：安可星球"></div>
+        <div class="fg"><label>填單日期 *</label><input type="date" id="f_date"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>訂單編號</label><input type="text" id="f_ord" placeholder="11503270006"></div>
+        <div class="fg"><label>倉庫代號</label><input type="text" id="f_src" value="AA002-2"></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label>收件人 *</label><input type="text" id="f_rec" placeholder="姓名"></div>
+        <div class="fg"><label>電話 *</label><input type="text" id="f_ph" placeholder="0900-000-000"></div>
+      </div>
+      <div class="fg"><label>收件地址 *</label><input type="text" id="f_addr" placeholder="縣市區路號"></div>
+      <div class="fg">
+        <label>產品清單</label>
+        <div class="prod-editor">
+          <div class="pe-head"><span>產品名稱</span><span>SKU / 條碼</span><span>數量</span><span></span></div>
+          <div id="pe-rows"></div>
+          <button class="btn-addprod" onclick="addProdRow()">＋ 新增產品</button>
+        </div>
+      </div>
+      <div class="fg"><label>備註</label><input type="text" id="f_note" placeholder="特殊說明…"></div>
+    </div>
+    <div class="mfoot">
+      <button class="btn-cc" onclick="closeM()">取消</button>
+      <button class="btn-ok" onclick="saveRec()">儲存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SK='pr_v3';
+let editId=null, curMonth='all', curCamp='all', q='';
+
+// ─── helper ──────────────────────────────────────────────────────
+function pd(n,s,q=1){return {n,s,q};}
+
+// ─── SEED DATA ────────────────────────────────────────────────────
+const SEED=[
+ {id:1,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150030",recipient:"許喬雯（鐵喬）",phone:"0911560317",address:"台北市內湖區新明路428巷13-2號4樓",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",2)]},
+ {id:2,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150031",recipient:"張寧恩",phone:"0930836966",address:"台北市中山區民權西路10巷1號14樓",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:3,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150033",recipient:"李心",phone:"0966531187",address:"桃園市楊梅區金山街298巷26號9樓",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:4,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150035",recipient:"廖婕涵",phone:"0955353717",address:"台北市內湖區新明路428巷13-1號",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:5,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150036",recipient:"吳佩宜",phone:"0970729759",address:"桃園市龜山區樂學三路83號9樓之3",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:6,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150038",recipient:"宋明瑾",phone:"0910390948",address:"台北市信義區和平東路三段179號11樓之5",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:7,campaign:"有心團購寄件",date:"2026-01-16",source:"AA002-2",orderNo:"11501150040",recipient:"粘芷寧",phone:"0936946369",address:"高雄市小港區漢民路232號三樓",notes:"",products:[pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:8,campaign:"Stella團主抽獎名單",date:"2026-01-20",source:"AA002-2",orderNo:"11501200042",recipient:"黃柏智",phone:"0926014020",address:"台北市萬華區萬大路493巷50號3樓",notes:"",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:9,campaign:"Stella團主抽獎名單",date:"2026-01-20",source:"AA002-2",orderNo:"11501200043",recipient:"陳思涵",phone:"0927289199",address:"桃園市平鎮區金陵路276號",notes:"",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:10,campaign:"Stella團主抽獎名單",date:"2026-01-20",source:"AA002-2",orderNo:"11501200044",recipient:"林意芯",phone:"0955703749",address:"台北市士林區中山北路七段81巷16弄5號12樓",notes:"",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:11,campaign:"Stella團主抽獎名單",date:"2026-01-20",source:"AA002-2",orderNo:"11501200046",recipient:"魏曉鈴",phone:"0987442713",address:"新北市林口區公園路61號15樓",notes:"",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:12,campaign:"Stella團主抽獎名單",date:"2026-01-20",source:"AA002-2",orderNo:"11501200045",recipient:"楊恩伊",phone:"0958666790",address:"新北市淡水區新春街103-32號6樓",notes:"",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:13,campaign:"米娜",date:"2026-01-20",source:"AA002-2",orderNo:"11501200041",recipient:"劉姿伶",phone:"0970921170",address:"桃園市龜山區樂善一路287號7樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("濃縮家事皂-700ml","4713233981324",1)]},
+ {id:14,campaign:"若綺(昇達老婆）",date:"2026-01-21",source:"AA002-2",orderNo:"11501220019",recipient:"米力恩",phone:"0975078627",address:"新北市汐止區東勢街201巷129弄40號4樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1)]},
+ {id:15,campaign:"若綺(昇達老婆）",date:"2026-02-06",source:"AA002-2",orderNo:"11502060022",recipient:"米力恩",phone:"0975078627",address:"新北市汐止區東勢街201巷129弄40號4樓",notes:"",products:[pd("淨淨-簡單柔濕巾(15抽×40包/箱)","4713233981423",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("淨淨-剋菌液十倍濃縮500ml","4713233981553",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1)]},
+ {id:16,campaign:"三寶藥師",date:"2026-01-27",source:"AA002-2",orderNo:"11501270048",recipient:"曜師家股份有限公司",phone:"0988219399",address:"嘉義縣民雄鄉安和路2號-1",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1),pd("植潤．水凝乳300mL","4713233984738",1)]},
+ {id:17,campaign:"李多慧",date:"2026-01-29",source:"AA002-2",orderNo:"11501290029",recipient:"ParkJaeHong 朴宰弘",phone:"0912295227",address:"新北市三重區環河北路三段106號4樓(管理員代收)",notes:"物流資訊避免提到李多慧",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",7),pd("補充瓶-真濃縮洗衣精-棉花香","4713233981362",3),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("淨淨-簡單柔濕巾(15抽×5包/串)","4713233981409",2),pd("植潤．水凝乳300mL","4713233984738",2),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",2)]},
+ {id:18,campaign:"潔顏三部曲創作者計畫",date:"2026-01-30",source:"AA002-2",orderNo:"11501300001",recipient:"林俊佑",phone:"0918056896",address:"新北市板橋區樂群路68號22樓之五",notes:"佑佑工程師",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1)]},
+ {id:19,campaign:"潔顏三部曲創作者計畫",date:"2026-02-02",source:"AA002-2",orderNo:"11502020040",recipient:"江慧珊",phone:"0956919772",address:"台中市西屯區潮洋里15鄰環中路三段63號8樓之1（管理室代收）",notes:"Beautiful Life By GM / Monica",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1)]},
+ {id:20,campaign:"潔顏三部曲創作者計畫",date:"2026-02-04",source:"AA002-2",orderNo:"11502040001",recipient:"陳姿吟",phone:"0976113554",address:"台南市東區裕農路288巷100號",notes:"屎蛋媽",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1)]},
+ {id:21,campaign:"潔顏三部曲創作者計畫",date:"2026-02-03",source:"AA002-2",orderNo:"11502030004",recipient:"徐可妮",phone:"0985339959",address:"台中市北區錦祥街42-1號",notes:"水妮",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1)]},
+ {id:22,campaign:"潔顏三部曲創作者計畫",date:"2026-02-03",source:"AA002-2",orderNo:"11502030018",recipient:"柯雅馨",phone:"0921230625",address:"台北市中正區牯嶺街165號2樓",notes:"蔥蔥",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1)]},
+ {id:23,campaign:"潔顏三部曲創作者計畫",date:"2026-02-06",source:"AA002-2",orderNo:"11502060021",recipient:"王雅雯",phone:"0929112400",address:"台南市安平區建平六街74巷19號",notes:"alley_wang",products:[pd("胺基酸溫和潔顏慕斯150mL","4713233984523",2),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1)]},
+ {id:24,campaign:"安可星球",date:"2026-02-04",source:"AA002-2",orderNo:"11502040027",recipient:"許紀萱",phone:"0984099262",address:"台中市清水區港新三路22號7樓之2",notes:"",products:[pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",2),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("補充瓶-真濃縮洗衣精-棉花香","4713233981362",1)]},
+ {id:25,campaign:"安可星球",date:"2026-03-02",source:"AA002-2",orderNo:"11503020032",recipient:"許紀萱",phone:"0984099262",address:"台中市清水區港新三路22號7樓之2",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("淨淨-剋菌液十倍濃縮500ml","4713233981553",1)]},
+ {id:26,campaign:"鴨鴨彩妝",date:"2026-02-06",source:"AA002-2",orderNo:"11502060020",recipient:"黃一晴",phone:"0937310595",address:"台北市信義區松隆路211號三樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",7),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1),pd("植潤．水凝乳300mL","4713233984738",1)]},
+ {id:27,campaign:"EmiLiA團購主",date:"2026-02-10",source:"AA002-2",orderNo:"11502100003",recipient:"武冠吟",phone:"0928339443",address:"台中市南屯區三厝街123號21樓",notes:"3/18-24團購",products:[pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("補充瓶-真濃縮洗衣精-棉花香","4713233981362",1)]},
+ {id:28,campaign:"EmiLiA團購主",date:"2026-03-12",source:"AA002-2",orderNo:"11503120024",recipient:"武冠吟",phone:"0928339443",address:"台中市南屯區三厝街123號21樓",notes:"3/18-24團購",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:29,campaign:"創作者克拉克",date:"2026-02-04",source:"AA002-2",orderNo:"11502040026",recipient:"黃建綸",phone:"0953040824",address:"台中市太平區還中東路三段97號9A-1",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:30,campaign:"創作者克拉克",date:"2026-02-11",source:"AA002-2",orderNo:"11502110016",recipient:"黃建綸",phone:"0953040824",address:"台中市太平區還中東路三段97號9A-1",notes:"",products:[pd("速效除黴凝膠150ml","4713233981539",2),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:31,campaign:"采欣",date:"2026-02-11",source:"AA002-2",orderNo:"11502110017",recipient:"林采欣",phone:"0976015686",address:"台北市中正區和平西路二段121號11樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("植潤．水凝乳300mL","4713233984738",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1)]},
+ {id:32,campaign:"Vina",date:"2026-01-16",source:"AA002-2",orderNo:"11501160038",recipient:"陳慧靜",phone:"0961369881",address:"台中市太平區樹孝路273巷28號4樓之3",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("補充瓶-真濃縮洗衣精-棉花香","4713233981362",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("淨淨-食器清潔皂補充瓶(500ml)","4713233981263",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("淨淨-剋菌液十倍濃縮500ml","4713233981553",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:33,campaign:"Vina",date:"2026-02-23",source:"AA002-2",orderNo:"11502230055",recipient:"陳慧靜",phone:"0961369881",address:"台中市太平區樹孝路273巷28號4樓之3",notes:"",products:[pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",2),pd("淨淨-簡單柔濕巾(15抽×5包/串)","4713233981409",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1)]},
+ {id:34,campaign:"子系太太",date:"2026-02-23",source:"AA002-2",orderNo:"11502230054",recipient:"呂詩婷",phone:"0919245155",address:"屏東縣鹽埔鄉建設街25號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:35,campaign:"方昶詠",date:"2026-02-23",source:"AA002-2",orderNo:"11502230053 / 11502250011",recipient:"方昶詠",phone:"0913369877",address:"台南市永康區大同街153巷3弄9號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",2),pd("真濃縮洗衣精-棉花香30ml(迷你瓶)","4713233981379",26)]},
+ {id:36,campaign:"podcaster試用品發送",date:"2026-03-06",source:"AA002-2",orderNo:"11503060001",recipient:"吳倩",phone:"0909368991",address:"台中市南屯區精誠南路1298-2號",notes:"好味小姐開束縛我還你原形，份數×2",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",2),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:37,campaign:"podcaster試用品發送",date:"2026-03-06",source:"AA002-2",orderNo:"11503060002",recipient:"許永元",phone:"0928697167",address:"台北市民生東路五段69巷2-1號2樓",notes:"禎甄要chat內，份數×2",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",2)]},
+ {id:38,campaign:"podcaster試用品發送",date:"2026-03-06",source:"AA002-2",orderNo:"11503060003",recipient:"李毅誠",phone:"02-2377-1173",address:"台北市大安區樂業街70號1樓",notes:"台通，份數×2",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",2)]},
+ {id:39,campaign:"podcaster試用品發送",date:"2026-03-05",source:"AA002-2",orderNo:"11503060004",recipient:"大慕影藝 Zoe",phone:"0975-519-652",address:"台北市大安區敦化南路二段267號14樓之5",notes:"唐陽雞酒屋，份數×2",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",2)]},
+ {id:40,campaign:"podcaster試用品發送",date:"2026-03-10",source:"AA002-2",orderNo:"11503100016",recipient:"王依立",phone:"0928-128-641",address:"台北市大同區迪化街一段269號9樓",notes:"壹加壹電台，份數×1",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("淨淨-剋菌液十倍濃縮500ml","4713233981553",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1)]},
+ {id:41,campaign:"podcaster試用品發送",date:"2026-03-10",source:"AA002-2",orderNo:"11503100017",recipient:"張采聿",phone:"0921756001",address:"台中市南區南平一街31號10F之2",notes:"聽故事學英文，份數×1",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:42,campaign:"小賢",date:"2026-03-13",source:"AA002-2",orderNo:"11503130021",recipient:"盧靜賢",phone:"0905989601",address:"金門縣金城鎮西海路三段11號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("淨淨招牌冰箱貼","4713233989689",1)]},
+ {id:43,campaign:"小軒",date:"2026-03-16",source:"AA002-2",orderNo:"11503160022",recipient:"張維軒",phone:"0977175776",address:"雲林縣斗六市保庄里保竹37號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:44,campaign:"恩恩",date:"2026-03-17",source:"AA002-2",orderNo:"11503170008",recipient:"羅詠恩",phone:"0987078967",address:"台中市霧峰區育群路162號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("淨淨無氟胺基酸多效牙膏(薄荷)150g","4713233988583",1)]},
+ {id:45,campaign:"沈",date:"2026-03-17",source:"AA002-2",orderNo:"11503170009",recipient:"沈倢宇",phone:"0988289813",address:"台南市北區文成一路96號8樓之7(管理室代收)",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("胺基酸深層潔顏乳100mL","4713233984547",1),pd("護敏無泡潔顏露150mL","4713233984509",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("速效除垢慕斯-500ml【水垢】","4713233981300",1)]},
+ {id:46,campaign:"溫",date:"2026-03-20",source:"AA002-2",orderNo:"11503200010",recipient:"溫芷翎",phone:"0956952886",address:"台北市內湖區文湖街21巷17弄12號2樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("新版速效除垢慕斯-500ml【水垢】","4713233981294",1),pd("噴槍(單獨)","E10",1)]},
+ {id:47,campaign:"媽媽寶寶",date:"2026-03-18",source:"AA002-2",orderNo:"11503180049",recipient:"媽媽寶寶廣告部 林欣穎",phone:"02-25058989#7158",address:"台北市南港區昆陽街16號8樓",notes:"洗衣精試用包500個，洗衣精800ml共112瓶",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",112),pd("真濃縮洗衣精10ml(隨身包)","4713233981430",500)]},
+ {id:48,campaign:"補寄小禮物",date:"2026-03-20",source:"AA002-2",orderNo:"11503200005",recipient:"楊庭軒",phone:"0912631047",address:"台中市烏日區三榮路二段442號8F之1",notes:"單號碼20260318060959719",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:49,campaign:"補寄小禮物",date:"2026-03-20",source:"AA002-2",orderNo:"11503200006",recipient:"許又芹",phone:"0960626629",address:"高雄市大樹區九曲里瓦厝街3巷82號",notes:"訂單號碼20260318105120850",products:[pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1)]},
+ {id:50,campaign:"Winnie",date:"2026-03-25",source:"AA002-2",orderNo:"11503250006",recipient:"陳靖雯",phone:"0980532290",address:"彰化市埔內街57號2樓之一",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1)]},
+ {id:51,campaign:"ELENA",date:"2026-03-25",source:"AA002-2",orderNo:"11503250007",recipient:"陳沚頤",phone:"0988866509",address:"新北市林口區文化三路一段39巷1號21樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("新版速效除垢慕斯-500ml【水垢】","4713233981294",1),pd("噴槍(單獨)","E10",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:52,campaign:"幸福列車",date:"2026-03-27",source:"AA002-2",orderNo:"11503270005",recipient:"幸福列車小編",phone:"0911693800",address:"台中市沙鹿區賢正街29號",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸多效牙膏-清涼薄荷150g","4713233984561",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1),pd("淨淨-剋菌液隨身瓶(100ml)","4713233986664",1)]},
+ {id:53,campaign:"hook",date:"2026-03-27",source:"AA002-2",orderNo:"11503270006",recipient:"王晰婷",phone:"0975749910",address:"台北市中正區羅斯福路三段2號11樓之1",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("淨淨-食器清潔皂(500ml)","4713233981256",1),pd("淨淨-簡單柔濕巾(15抽×40包/箱)","4713233981423",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1),pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("新版速效除垢慕斯-500ml【水垢】","4713233981294",1),pd("噴槍(單獨)","E10",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1)]},
+ {id:54,campaign:"蛇編",date:"2026-04-07",source:"AA002-2",orderNo:"11504070023",recipient:"林昱函",phone:"0985212489",address:"桃園市中壢區高鐵北路二段72號6樓A室",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("胺基酸多效牙膏-薄荷(無氟)150g","4713233984578",1),pd("真濃縮洗衣精-棉花香30ml(迷你瓶)","4713233981379",1),pd("淨淨-食器清潔皂隨身瓶(50ml)","4713233982253",1),pd("胺基酸沐浴慕斯-日光棉花50mL","4713233984653",1),pd("胺基酸沐浴慕斯-療癒花語50mL","4713233984660",1),pd("胺基酸多效牙膏-薄荷(無氟)20g","4713233984721",1),pd("胺基酸溫和潔顏慕斯30mL","4713233984530",1),pd("胺基酸深層潔顏乳20mL","4713233984554",1),pd("護敏無泡潔顏露20mL","4713233984516",1),pd("淨淨手提開窗盥洗包","4713233989719",1),pd("淨淨-剋菌液隨身瓶(100ml)","4713233986664",1)]},
+ {id:55,campaign:"小胖盈",date:"2026-04-07",source:"AA002-2",orderNo:"11504070024",recipient:"廖彥盈",phone:"0939309120",address:"新北市中和區民有街37號12樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("新版速效除垢慕斯-500ml【水垢】","4713233981294",1),pd("噴槍(單獨)","E10",1),pd("淨淨-剋菌液居家瓶(300ml)","4713233981621",1)]},
+ {id:56,campaign:"媽媽寶寶獎項",date:"2026-04-13",source:"AA002-2",orderNo:"11504130011",recipient:"媽媽寶寶廣告部 林欣穎",phone:"02-25058989#7158",address:"台北市南港區昆陽街16號8樓",notes:"報獎",products:[pd("胺基酸沐浴慕斯-純淨無香600mL","4713233984622",1),pd("胺基酸沐浴慕斯-日光棉花600mL","4713233984639",1),pd("胺基酸沐浴慕斯-療癒花語600mL","4713233984646",1),pd("淨淨-簡單柔濕巾(15抽)","4713233981393",1)]},
+ {id:57,campaign:"大牛哥",date:"2026-04-15",source:"AA002-2",orderNo:"11504150001",recipient:"不務正業娛樂有限公司 (Eason收)",phone:"0988-917885",address:"新北市汐止區忠三街16巷16號1樓",notes:"",products:[pd("真濃縮洗衣精-棉花香800ml","4713233981355",1),pd("濃縮家事皂-700ml","4713233981324",1),pd("淨淨-濃縮家事皂300ml分裝瓶","4713233983823",1),pd("速效除黴凝膠150ml","4713233981539",1),pd("新版速效除垢慕斯-500ml【水垢】","4713233981294",1),pd("噴槍(單獨)","E10",1),pd("胺基酸溫和潔顏慕斯150mL","4713233984523",1)]},
+];
+
+function loadData(){try{const s=localStorage.getItem(SK);if(s){const d=JSON.parse(s);if(d&&d.length)return d;}}catch(e){}return SEED.map(r=>({...r,products:(r.products||[]).map(p=>({...p}))}))}
+function saveData(){localStorage.setItem(SK,JSON.stringify(ship));}
+let ship=loadData();
+let nid=Math.max(...ship.map(r=>r.id))+1;
+
+// ─── ESC / HIGHLIGHT ─────────────────────────────────────────────
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function hl(t){if(!q)return esc(t);return esc(t).replace(new RegExp('('+escRe(q)+')','gi'),'<span class="hl">$1</span>');}
+
+// ─── DROPDOWN (generic) ──────────────────────────────────────────
+function ddToggle(id){
+  const menu=document.getElementById(id+'Menu');
+  const trig=document.getElementById(id+'Trig');
+  const open=menu.classList.toggle('open');
+  trig.classList.toggle('open',open);
+  if(open&&document.getElementById(id+'Srch')){
+    document.getElementById(id+'Srch').value='';
+    if(id==='ddCamp') buildCampOpts('');
+    setTimeout(()=>document.getElementById(id+'Srch').focus(),50);
+  }
+}
+document.addEventListener('click',e=>{
+  ['ddMonth','ddCamp'].forEach(id=>{
+    const w=document.getElementById(id);
+    if(w&&!w.contains(e.target)){
+      document.getElementById(id+'Menu').classList.remove('open');
+      document.getElementById(id+'Trig').classList.remove('open');
+    }
+  });
+});
+
+// Month dropdown
+function buildMonthOpts(){
+  const months=[...new Set(ship.map(r=>r.date.slice(0,7)))].sort().reverse();
+  const labels={'2026-01':'2026年 01月','2026-02':'2026年 02月','2026-03':'2026年 03月','2026-04':'2026年 04月','2026-05':'2026年 05月','2026-06':'2026年 06月'};
+  const items=[{v:'all',l:'全部月份'},...months.map(m=>({v:m,l:labels[m]||m}))];
+  document.getElementById('ddMonthOpts').innerHTML=items.map(it=>`<div class="dd-opt ${it.v===curMonth?'sel':''}" onclick="pickMonth('${it.v}')">${it.l}</div>`).join('');
+}
+function pickMonth(v){
+  curMonth=v;
+  document.getElementById('ddMonthLabel').textContent=v==='all'?'全部月份':(v.replace('-','年 ').replace(/(\d{2})$/,'$1月'));
+  document.getElementById('ddMonthMenu').classList.remove('open');
+  document.getElementById('ddMonthTrig').classList.remove('open');
+  go();
+}
+
+// Campaign dropdown
+function buildCampOpts(filter=''){
+  const camps=[...new Set(ship.map(r=>r.campaign))].sort();
+  const f=filter.toLowerCase();
+  const items=[{v:'all',l:'全部活動'},...camps.map(c=>({v:c,l:c}))];
+  document.getElementById('ddCampOpts').innerHTML=items.map(it=>`<div class="dd-opt ${it.v===curCamp?'sel':''} ${f&&!it.l.toLowerCase().includes(f)?'hide':''}" onclick="pickCamp('${it.v.replace(/'/g,"\\'")}')">${it.l}</div>`).join('');
+}
+function pickCamp(v){
+  curCamp=v;
+  document.getElementById('ddCampLabel').textContent=v==='all'?'全部活動':v;
+  document.getElementById('ddCampMenu').classList.remove('open');
+  document.getElementById('ddCampTrig').classList.remove('open');
+  go();
+}
+
+// ─── FILTER & RENDER ─────────────────────────────────────────────
+function go(){
+  q=document.getElementById('srch').value.trim().toLowerCase();
+  let data=[...ship];
+  if(curMonth!=='all') data=data.filter(r=>r.date.startsWith(curMonth));
+  if(curCamp!=='all') data=data.filter(r=>r.campaign===curCamp);
+  if(q) data=data.filter(r=>{
+    const hay=[r.campaign,r.orderNo,r.recipient,r.phone,r.address,r.notes,...(r.products||[]).flatMap(p=>[p.n,p.s])].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+  data.sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('cnt').textContent=data.length+' 筆';
+  renderTable(data);
+}
+
+function renderTable(data){
+  const tb=document.getElementById('tb');
+  if(!data.length){tb.innerHTML=`<tr class="erow-empty"><td colspan="8">😶 找不到符合的紀錄</td></tr>`;return;}
+  tb.innerHTML=data.flatMap(r=>{
+    const prods=r.products||[];
+    const preview=prods.slice(0,2).map(p=>`<span class="pp">${hl(p.n)}${p.q>1?` ×${p.q}`:''}<span class="sku">${hl(p.s)}</span></span>`).join('');
+    const more=prods.length>2?`<span class="pp" style="color:#9CA3AF">+${prods.length-2}項</span>`:'';
+    const nDot=r.notes?`<span class="ntdot" title="${esc(r.notes)}"></span>`:'';
+    return [
+      `<tr class="main-row" id="mr${r.id}" onclick="tog(${r.id})">
+        <td class="td-date">${r.date}</td>
+        <td class="td-camp">${hl(r.campaign)}</td>
+        <td class="td-ord">${hl(r.orderNo)}</td>
+        <td class="td-name">${hl(r.recipient)}${nDot}</td>
+        <td class="td-ph">${hl(r.phone)}</td>
+        <td class="td-addr">${hl(r.address)}</td>
+        <td class="td-prod">${preview}${more}</td>
+        <td class="td-act" onclick="event.stopPropagation()">
+          <button class="bx bx-c" onclick="copyRec(${r.id})">複製</button>
+          <button class="bx bx-e" onclick="openEdit(${r.id})">編輯</button>
+          <button class="bx bx-d" onclick="delRec(${r.id})">刪除</button>
+        </td>
+      </tr>`,
+      `<tr class="exp-row" id="er${r.id}">
+        <td class="exp-cell" colspan="8">
+          <div class="exp-in">
+            <div class="exp-grid">
+              <div>
+                <div class="elabel">訂單資訊</div>
+                <div class="eval">📋 ${esc(r.orderNo)}</div>
+                <div class="eval" style="font-size:12px;color:#9CA3AF;margin-top:2px;">倉庫：${esc(r.source||'AA002-2')} · ${esc(r.date)}</div>
+              </div>
+              <div>
+                <div class="elabel">收件資訊</div>
+                <div class="eval">👤 ${esc(r.recipient)}</div>
+                <div class="eval">📞 ${esc(r.phone)}</div>
+                <div class="eval">📍 ${esc(r.address)}</div>
+              </div>
+            </div>
+            <div style="margin-top:12px;">
+              <div class="elabel">產品清單（共 ${prods.length} 項）</div>
+              <table class="ptable">
+                <thead><tr><th>產品名稱</th><th>SKU / 條碼</th><th>數量</th></tr></thead>
+                <tbody>${prods.map(p=>`<tr><td>${esc(p.n)}</td><td><span class="sku-code">${esc(p.s)}</span></td><td style="text-align:center;font-weight:600;">×${p.q}</td></tr>`).join('')}</tbody>
+              </table>
+            </div>
+            ${r.notes?`<div class="nbox">⚠️ ${esc(r.notes)}</div>`:''}
+          </div>
+        </td>
+      </tr>`
+    ];
+  }).join('');
+}
+
+function tog(id){
+  const er=document.getElementById('er'+id);
+  const mr=document.getElementById('mr'+id);
+  if(!er) return;
+  const open=er.classList.toggle('open');
+  mr.classList.toggle('exp',open);
+}
+
+// ─── PRODUCT EDITOR IN MODAL ─────────────────────────────────────
+let prodRows=[];
+function renderProdRows(){
+  document.getElementById('pe-rows').innerHTML=prodRows.map((p,i)=>`
+    <div class="pe-row">
+      <input type="text" value="${esc(p.n)}" placeholder="產品名稱" oninput="prodRows[${i}].n=this.value">
+      <input type="text" value="${esc(p.s)}" placeholder="4713233981355" oninput="prodRows[${i}].s=this.value">
+      <input type="number" value="${p.q}" min="1" oninput="prodRows[${i}].q=parseInt(this.value)||1" style="width:100%">
+      <button class="btn-rm" onclick="rmProdRow(${i})">×</button>
+    </div>`).join('');
+}
+function addProdRow(){prodRows.push({n:'',s:'',q:1});renderProdRows();}
+function rmProdRow(i){prodRows.splice(i,1);renderProdRows();}
+
+// ─── ADD / EDIT ───────────────────────────────────────────────────
+function openAdd(){
+  editId=null;
+  document.getElementById('mtitle').textContent='新增寄件紀錄';
+  document.getElementById('f_camp').value='';
+  document.getElementById('f_date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('f_ord').value='';
+  document.getElementById('f_src').value='AA002-2';
+  document.getElementById('f_rec').value='';
+  document.getElementById('f_ph').value='';
+  document.getElementById('f_addr').value='';
+  document.getElementById('f_note').value='';
+  prodRows=[{n:'',s:'',q:1}];
+  renderProdRows();
+  document.getElementById('modal').style.display='flex';
+}
+function openEdit(id){
+  const r=ship.find(x=>x.id===id);if(!r) return;
+  editId=id;
+  document.getElementById('mtitle').textContent='編輯寄件紀錄';
+  document.getElementById('f_camp').value=r.campaign;
+  document.getElementById('f_date').value=r.date;
+  document.getElementById('f_ord').value=r.orderNo||'';
+  document.getElementById('f_src').value=r.source||'AA002-2';
+  document.getElementById('f_rec').value=r.recipient;
+  document.getElementById('f_ph').value=r.phone;
+  document.getElementById('f_addr').value=r.address;
+  document.getElementById('f_note').value=r.notes||'';
+  prodRows=(r.products||[]).map(p=>({...p}));
+  if(!prodRows.length) prodRows=[{n:'',s:'',q:1}];
+  renderProdRows();
+  document.getElementById('modal').style.display='flex';
+}
+function closeM(){document.getElementById('modal').style.display='none';editId=null;}
+function saveRec(){
+  const campaign=document.getElementById('f_camp').value.trim();
+  const date=document.getElementById('f_date').value;
+  const recipient=document.getElementById('f_rec').value.trim();
+  const phone=document.getElementById('f_ph').value.trim();
+  const address=document.getElementById('f_addr').value.trim();
+  if(!campaign||!date||!recipient||!phone||!address){alert('請填寫必要欄位');return;}
+  const orderNo=document.getElementById('f_ord').value.trim();
+  const source=document.getElementById('f_src').value.trim()||'AA002-2';
+  const notes=document.getElementById('f_note').value.trim();
+  const products=prodRows.filter(p=>p.n).map(p=>({n:p.n.trim(),s:p.s.trim(),q:parseInt(p.q)||1}));
+  if(editId){
+    const i=ship.findIndex(r=>r.id===editId);
+    if(i>=0) ship[i]={...ship[i],campaign,date,orderNo,source,recipient,phone,address,notes,products};
+  } else {
+    ship.unshift({id:nid++,campaign,date,orderNo,source,recipient,phone,address,notes,products});
+  }
+  saveData();closeM();buildMonthOpts();buildCampOpts();go();
+}
+function copyRec(id){
+  const r=ship.find(x=>x.id===id);if(!r) return;
+  editId=null;
+  document.getElementById('mtitle').textContent='複製寄件紀錄（新增）';
+  document.getElementById('f_camp').value=r.campaign;
+  document.getElementById('f_date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('f_ord').value='';
+  document.getElementById('f_src').value=r.source||'AA002-2';
+  document.getElementById('f_rec').value=r.recipient;
+  document.getElementById('f_ph').value=r.phone;
+  document.getElementById('f_addr').value=r.address;
+  document.getElementById('f_note').value=r.notes||'';
+  prodRows=(r.products||[]).map(p=>({...p}));
+  if(!prodRows.length) prodRows=[{n:'',s:'',q:1}];
+  renderProdRows();
+  document.getElementById('modal').style.display='flex';
+}
+function delRec(id){
+  const r=ship.find(x=>x.id===id);if(!r) return;
+  if(!confirm(`確定刪除「${r.recipient}」的寄件紀錄？`)) return;
+  ship=ship.filter(x=>x.id!==id);
+  saveData();buildMonthOpts();buildCampOpts();go();
+}
+
+// ─── INIT ────────────────────────────────────────────────────────
+buildMonthOpts();
+buildCampOpts();
+go();
+</script>
+</body>
+</html>

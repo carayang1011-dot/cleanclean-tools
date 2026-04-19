@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: oklch(99.5% .003 210);
+    --foreground: oklch(22% .015 210);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(22% .015 210);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(22% .015 210);
+    --primary: oklch(79% .09 205);
+    --primary-foreground: oklch(99% 0 0);
+    --secondary: oklch(96% .012 210);
+    --secondary-foreground: oklch(35% .025 210);
+    --muted: oklch(96% .01 210);
+    --muted-foreground: oklch(50% .018 210);
+    --accent: oklch(94% .03 205);
+    --accent-foreground: oklch(30% .06 210);
+    --destructive: oklch(60% .22 25);
+    --destructive-foreground: oklch(98% .005 210);
+    --border: oklch(92% .005 210);
+    --input: oklch(92% .005 210);
+    --ring: oklch(79% .09 205);
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; }
+}
+
+/* 自訂捲軸 */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: oklch(96% .01 210); }
+::-webkit-scrollbar-thumb { background: oklch(80% .015 210); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(65% .018 210); }
